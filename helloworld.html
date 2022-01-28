@@ -15,9 +15,35 @@
 
 	<!-- Loads and initializes the library -->
 	<script type="text/javascript" src="../src/js/mxClient.js"></script>
-
+	<style type="text/css">
+		.flow {
+		  stroke-dasharray: 8;
+		  animation: dash 0.5s linear;
+		  animation-iteration-count: infinite;
+		}
+		@keyframes dash {
+		  to {
+		    stroke-dashoffset: -16;
+		  }
+		}
+	</style>
 	<!-- Example code -->
 	<script type="text/javascript">
+		function getSeparador (width,numElementos, maxwidth)
+		{
+			console.log ("valor de maxwidth "+maxwidth);
+			console.log ("valor de maxwidth "+(width*numElementos));
+			var x1 = maxwidth - (width*numElementos);
+			console.log ("Valor de x1 -> "+x1);
+			var x2=x1/(numElementos+1);
+			
+			console.log ("Valor de x2 -> "+x2);
+			console.log ("Valor que se va regtresar  -> "+Math.abs(x2));
+			
+			return Math.abs(x2);
+
+			
+		};
 		// Program starts here. Creates a sample graph in the
 		// DOM node with the specified ID. This function is invoked
 		// from the onLoad event handler of the document (see below).
@@ -43,14 +69,19 @@
 				// Gets the default parent for inserting new cells. This
 				// is normally the first child of the root (ie. layer 0).
 				var style = new Object();
+				style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_RECTANGLE;
 				style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_IMAGE;
 				style[mxConstants.STYLE_PERIMETER] = mxPerimeter.RectanglePerimeter;
 				style[mxConstants.STYLE_IMAGE] = 'images/icons48/keys.png';
-				style[mxConstants.STYLE_FONTCOLOR] = '#FFFFFF';
+				style[mxConstants.STYLE_FONTCOLOR] = '#000000';
+				style[mxConstants.STYLE_FILLCOLOR] = '#FFFFFF';
+				style[mxConstants.STYLE_STROKECOLOR] = '#FFFFFF';
 				graph.getStylesheet().putCellStyle('image', style);
 				style = mxUtils.clone(style);
+				//style[mxConstants.STYLE_OPACITY] = 50;
 				style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_LABEL;
-				style[mxConstants.STYLE_STROKECOLOR] = '#000000';
+				style[mxConstants.STYLE_ROUNDED] = true;
+				style[mxConstants.STYLE_STROKECOLOR] = '#FFFFFF';
 				style[mxConstants.STYLE_ALIGN] = mxConstants.ALIGN_CENTER;
 				style[mxConstants.STYLE_VERTICAL_ALIGN] = mxConstants.ALIGN_TOP;
 				style[mxConstants.STYLE_IMAGE_ALIGN] = mxConstants.ALIGN_CENTER;
@@ -63,7 +94,7 @@
 				graph.getStylesheet().putCellStyle('bottom', style);
 				style = mxUtils.clone(style);
 				style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_LABEL;
-				style[mxConstants.STYLE_STROKECOLOR] = '#000000';
+				style[mxConstants.STYLE_STROKECOLOR] = '#FFFFFF';
 				style[mxConstants.STYLE_ALIGN] = mxConstants.ALIGN_CENTER;
 				style[mxConstants.STYLE_VERTICAL_ALIGN] = mxConstants.ALIGN_TOP;
 				style[mxConstants.STYLE_IMAGE_ALIGN] = mxConstants.ALIGN_CENTER;
@@ -76,7 +107,7 @@
 				graph.getStylesheet().putCellStyle('f5', style);
 				style = mxUtils.clone(style);
 				style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_LABEL;
-				style[mxConstants.STYLE_STROKECOLOR] = '#000000';
+				style[mxConstants.STYLE_STROKECOLOR] = '#FFFFFF';
 				style[mxConstants.STYLE_ALIGN] = mxConstants.ALIGN_CENTER;
 				style[mxConstants.STYLE_VERTICAL_ALIGN] = mxConstants.ALIGN_TOP;
 				style[mxConstants.STYLE_IMAGE_ALIGN] = mxConstants.ALIGN_CENTER;
@@ -89,7 +120,7 @@
 				graph.getStylesheet().putCellStyle('vmlinux', style);
 				style = mxUtils.clone(style);
 				style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_LABEL;
-				style[mxConstants.STYLE_STROKECOLOR] = '#000000';
+				style[mxConstants.STYLE_STROKECOLOR] = '#FFFFFF';
 				style[mxConstants.STYLE_ALIGN] = mxConstants.ALIGN_CENTER;
 				style[mxConstants.STYLE_VERTICAL_ALIGN] = mxConstants.ALIGN_TOP;
 				style[mxConstants.STYLE_IMAGE_ALIGN] = mxConstants.ALIGN_CENTER;
@@ -100,48 +131,110 @@
 				style[mxConstants.STYLE_SPACING_TOP] = '56';
 				style[mxConstants.STYLE_SPACING] = '8';
 				graph.getStylesheet().putCellStyle('storage', style);
+				
+				style = mxUtils.clone(style);
+				style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_LABEL;
+				style[mxConstants.STYLE_STROKECOLOR] = '#FFFFFF';
+				style[mxConstants.STYLE_ALIGN] = mxConstants.ALIGN_CENTER;
+				style[mxConstants.STYLE_VERTICAL_ALIGN] = mxConstants.ALIGN_TOP;
+				style[mxConstants.STYLE_IMAGE_ALIGN] = mxConstants.ALIGN_CENTER;
+				style[mxConstants.STYLE_IMAGE_VERTICAL_ALIGN] = mxConstants.ALIGN_TOP;
+				style[mxConstants.STYLE_IMAGE] = 'images/iconostpe/serverfisico.png';
+				style[mxConstants.STYLE_IMAGE_WIDTH] = '150';
+				style[mxConstants.STYLE_IMAGE_HEIGHT] = '48';
+				style[mxConstants.STYLE_SPACING_TOP] = '56';
+				style[mxConstants.STYLE_SPACING] = '8';
+				graph.getStylesheet().putCellStyle('serverfisico', style);
+				style = mxUtils.clone(style);
+				style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_LABEL;
+				style[mxConstants.STYLE_STROKECOLOR] = '#FFFFFF';
+				style[mxConstants.STYLE_ALIGN] = mxConstants.ALIGN_CENTER;
+				style[mxConstants.STYLE_VERTICAL_ALIGN] = mxConstants.ALIGN_TOP;
+				style[mxConstants.STYLE_IMAGE_ALIGN] = mxConstants.ALIGN_CENTER;
+				style[mxConstants.STYLE_IMAGE_VERTICAL_ALIGN] = mxConstants.ALIGN_TOP;
+				style[mxConstants.STYLE_IMAGE] = 'images/iconostpe/serverhp.png';
+				style[mxConstants.STYLE_IMAGE_WIDTH] = '150';
+				style[mxConstants.STYLE_IMAGE_HEIGHT] = '48';
+				style[mxConstants.STYLE_SPACING_TOP] = '56';
+				style[mxConstants.STYLE_SPACING] = '8';
+				graph.getStylesheet().putCellStyle('serverhp', style);
+				var clusterStyle = new Object();
+				clusterStyle[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_RECTANGLE;
+				clusterStyle[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_IMAGE;
+				clusterStyle[mxConstants.STYLE_PERIMETER] = mxPerimeter.RectanglePerimeter;
+				
+				//clusterStyle[mxConstants.STYLE_FILLCOLOR] = '#FFFFFF';
+				clusterStyle[mxConstants.STYLE_STROKECOLOR] = '#000000';
+				graph.getStylesheet().putCellStyle('cluster', clusterStyle);
 				var parent = graph.getDefaultParent();
-								
+				var divwith=700;				
 				// Adds cells to the model in a single step
+				var layout = new mxRadialTreeLayout(graph);
 				graph.getModel().beginUpdate();
 				try
 				{
+					var elementos = Array();
 					var height=100;
-					var v1 = graph.insertVertex(parent, null, '10.218.52.13\n f5', 310, 20, 80, height,'f5');
+					var y = 20;
+					var elementos = Array();
+					//getSeparador
+					var x= getSeparador(80,1,700);
+					console.log ("Valor de X "+x);
+					elementos ['10.218.52.13']=graph.insertVertex(parent, null, '10.218.52.13\n f5', x, y, 80, height,'f5');
 					x=50;
 					console.log ("valor de X"+x);
-					var v2 = graph.insertVertex(parent, null, '10.218.48.57', x, 150, 80,height,"vmlinux");
-					x+=50+80;
-					console.log ("valor de X"+x);
-					var v3 = graph.insertVertex(parent, null, '10.218.48.58', x, 150, 80, height,"vmlinux");
-					x+=50+80;
-					console.log ("valor de X"+x);
-					var v4 = graph.insertVertex(parent, null, '10.218.48.59', x, 150, 80, height,"vmlinux");
-					x+=50+80;
-					console.log ("valor de X"+x);
-					var v5 = graph.insertVertex(parent, null, '10.218.48.60', x, 150, 80, height,"vmlinux");
-					x+=50+80;
-					console.log ("valor de X"+x);
-					var v6 = graph.insertVertex(parent, null, '10.218.48.61', x, 150, 80, height,"vmlinux");
-					x+=50+80;
-					console.log ("valor de X"+x);
-					var e1 = graph.insertEdge(parent, null, '', v1, v2);
-					var e2 = graph.insertEdge(parent, null, '', v1, v3);
-					var e3 = graph.insertEdge(parent, null, '', v1, v4);
-					var e4 = graph.insertEdge(parent, null, '', v1, v5);
-					var e5 = graph.insertEdge(parent, null, '', v1, v6);
-					console.log ("valor de X"+x);
-					x=115;
-					console.log ("valor de X->"+x);
-					var v7 = graph.insertVertex(parent, null, '10.218.49.42', x, 280, 80, height);
-					x+=115+80;
-					var val1 = graph.insertVertex(parent, null, '10.218.49.43', x, 280, 80, height);
-					console.log ("valor de X->"+x);
-					x+=115+80;
-					var val2 = graph.insertVertex(parent, null, '10.218.49.44', x, 280, 80, height);
-					console.log ("valor de X->"+x);
-					var val3 = graph.insertVertex(parent, null, 'Storage\n nube', 310, 410, 80, height,"storage");
+					var width = 400 ;
 					
+					y +=200;
+					
+					
+					x= getSeparador(600,1,700);
+					elementos ['clusterX1']=graph.insertVertex(parent, null, '', x , y, 600, 120,'fillColor=#ffffff;strokeColor=#E6E6E6;rounded;');
+					
+					sepador= getSeparador(80,4,600);
+					console.log ("Separador ->"+sepador);
+					x=sepador;
+					console.log ("valor de X"+x);
+					elementos ['10.218.48.58']=graph.insertVertex(elementos ['clusterX1'], null, '10.218.48.58', x, 10, 80, height,"vmlinux");
+					x+=sepador+80;
+					console.log ("valor de X"+x);
+					elementos ['10.218.48.59']=graph.insertVertex(elementos ['clusterX1'], null, '10.218.48.59', x, 10, 80, height,"vmlinux");
+					x+=sepador+80;
+					console.log ("valor de X"+x);
+					elementos ['10.218.48.59']=graph.insertVertex(elementos ['clusterX1'], null, '10.218.48.60', x, 10, 80, height,"vmlinux");
+					x+=sepador+80;
+					console.log ("valor de X"+x);
+					elementos ['10.218.48.59']=graph.insertVertex(elementos ['clusterX1'], null, '10.218.48.60', x, 10, 80, height,"vmlinux");
+					x+=sepador+80;
+					console.log ("valor de X"+x);
+				
+					console.log ("valor de X"+x);
+					y+=200;
+					console.log("------------------------------------------------------------------");
+					x= getSeparador(600,1,700);
+					elementos ['clusterX2']=graph.insertVertex(parent, null, '', x , y, 600, 120,'fillColor=#ffffff;strokeColor=#E6E6E6;');
+					separador=getSeparador(150,3,600);
+					x=separador;
+					console.log ("valor de X->"+x);
+					
+					elementos['10.218.49.42']=graph.insertVertex(elementos ['clusterX2'], null, '10.218.49.42', x, 10, 150 , height,'serverfisico');
+					x+=separador+150;
+					elementos['10.218.49.43']=graph.insertVertex(elementos ['clusterX2'], null, '10.218.49.42', x, 10, 150 , height,'serverfisico');
+					console.log ("valor de X->"+x);
+					x+=separador+150;
+					elementos['10.218.49.42']=graph.insertVertex(elementos ['clusterX2'], null, '10.218.49.44', x, 10, 150 , height,'serverfisico');
+					console.log ("valor de X->"+x);
+					y+=200;
+					var val3 = graph.insertVertex(parent, null, 'Storage\n nube', 310, y, 80, height,"storage");
+					elementos['storage']= graph.insertVertex(parent, null, 'Storage\n nube', 310, y, 80, height,"storage");
+										
+					var edge=Array();
+					
+					//console.log(elementos ['10.218.52.13']);
+					//console.log(elementos ['clusterX1']);
+					edge[0]=graph.insertEdge(parent, null, '',elementos ['10.218.52.13'],elementos ['clusterX1']);
+					edge[1]=graph.insertEdge(parent, null, '',elementos ['clusterX1'],elementos ['clusterX2']);
+					edge[2]=graph.insertEdge(parent, null, '',elementos ['clusterX2'],elementos ['storage']);
 					
 				}
 				finally
